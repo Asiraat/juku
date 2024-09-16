@@ -1,0 +1,37 @@
+@font-face {
+    font-family: "fibaji";
+    src: url("https://Asiraat.github.io/IoEI.ttf/") format("truetype");
+}
+.Challenge {
+    font-family: 'HGS創英角ゴシックUB','HGP創英角ゴシックUB','けいふぉんと','fibaji', serif;
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    left: 15%;
+    margin-bottom: 15px;
+}
+
+body {
+    font-family: '游明朝','YuMincho','Hiragino Mincho Pro', serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.problem-container {
+    margin-bottom: 20px;
+}
+.box {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.answer {
+    text-align: right;
+    padding-right: 10px;
+}
+.answer p {
+    display: inline-block;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+    margin: 0;
+}
