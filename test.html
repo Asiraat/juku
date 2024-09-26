@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex,nofollow">
+        <title>歴史-年代年号-並び変え</title>
+        <style>
+        .Challenge {
+            font-family: 'HGS創英角ゴシックUB','HGP創英角ゴシックUB', serif;
+            font-size: 2rem;
+            font-weight: bold;
+            position: relative;
+            left: 15%;
+            margin-bottom: 15px;
+       }
+
+        body {
+            font-family: '游明朝','YuMincho','Hiragino Mincho Pro', serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .problem-container {
+            margin-bottom: 20px;
+        }
+        
+        .box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .answer {
+            text-align: right;
+            padding-right: 10px;
+        }
+        .answer p {
+            display: inline-block;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+            margin: 0;
+        }
+        </style>
+    </head>
+<body>
+    <div class="Challenge">チャレンジ！</div>
+    <div id="problem-container"></div>
+  　
+  　<script>
+// データ
+const problemData = {
+    1: "卑弥呼が魏へ使い",
+    2: "百済から仏教伝来",
+    3: "冠位十二階",
+    4: "憲法十七条",
+    5: "小野妹子が遣隋使として派遣",
+    6: "中大兄皇子が蘇我氏滅ぼす",
+    7: "白村江の戦い",
+    8: "壬申の乱",
+    9: "藤原京へ遷都",
+    10: "大宝律令",
+    11: "平城京へ遷都",
+    12: "三世一身法",
+    13: "墾田永年私財法",
+    14: "平安京へ遷都",
+    15: "菅原道真が遣唐使廃止提言",
+    16: "平将門の乱",
+    17: "藤原純友の乱",
+    18: "白河上皇が院政開始",
+    19: "保元の乱",
+    20: "平治の乱",
+    21: "平清盛が太政大臣に",
+    22: "壇ノ浦の戦い",
+    23: "源頼朝が征夷大将軍に",
+    24: "承久の乱",
+    25: "御成敗式目",
+    26: "",
+    27: "",
+    28: "",
+    29: "",
+    30: "",
+    31: "",
+    32: "",
+    33: "",
+    34: "",
+    35: "",
+    36: "",
+    37: "",
+    38: "",
+    39: "",
+    40: "",
+    41: "",
+    42: "",
+    43: "",
+    44: "",
+    45: "",
+    46: "",
+    47: "",
+    48: "",
+    49: "",
+    50: "",
+    51: "",
+    52: "",
+    53: "",
+    54: "",
+    55: "",
+    56: "",
+    57: "",
+    58: "",
+    59: "",
+    60: "",
+    61: "",
+    62: "",
+    63: "",
+    64: "",
+    65: "",
+    66: "",
+    67: "",
+    68: "",
+    69: "",
+    70: "",
+    71: "",
+    72: "",
+    73: "",
+    74: "",
+    75: "",
+    76: "",
+    77: "",
+    78: "",
+    79: "",
+    80: "",
+    81: "",
+    82: "",
+    83: "",
+    84: "",
+    85: "",
+    86: "",
+    87: "",
+    88: "",
+    89: "",
+    90: "",
+    91: "",
+    92: "",
+    93: "",
+    94: "",
+    95: "",
+    96: "",
+    97: "",
+    98: "",
+    99: "",
+    100: ""
+};
+
+function getRandomNumbers(min, max, count) {
+    const numbers = [];
+    let attempts = 0;
+    const maxAttempts = 1000;
+
+    while (numbers.length < count && attempts < maxAttempts) {
+        const num = Math.floor(Math.random() * (max - min + 1)) + min;
+        if (!numbers.includes(num)) {
+            const isValid = numbers.every(existingNum => Math.abs(num - existingNum) <= 20);
+            if (isValid) {
+                numbers.push(num);
+            }
+        }
+        attempts++;
+    }
+
+    if (numbers.length < count) {
+        return getRandomNumbers(min, max, count);
+    }
+
+    return numbers;
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function generateProblem() {
+    const problems = [];
+    for (let i = 0; i < 10; i++) {
+        const numbers = getRandomNumbers(1, 25, 4);
+        problems.push(shuffleArray([...numbers]));
+    }
+    return problems;
+}
+
+
+function createProblemHTML(problems) {
+    const container = document.getElementById('problem-container');
+    const labels = ['ア', 'イ', 'ウ', 'エ'];
+
+    problems.forEach((problem, index) => {
+        const boxNumber = index + 1;
+        
+        const problemContainer = document.createElement('div');
+        problemContainer.className = 'problem-container';
+
+        const box = document.createElement('div');
+        box.className = `box box${boxNumber}`;
+
+        const content = `（${boxNumber}）${problem.map((num, i) => `${labels[i]} ${problemData[num]}`).join('　')}`;
+        box.innerHTML = content;
+        problemContainer.appendChild(box);
+
+        const answerBox = document.createElement('div');
+        answerBox.className = 'answer';
+        answerBox.innerHTML = '<p>ㅤㅤ→ㅤㅤ→ㅤㅤ→ㅤㅤ</p>';
+        problemContainer.appendChild(answerBox);
+
+        container.appendChild(problemContainer);
+    });
+}
+
+const problems = generateProblem();
+createProblemHTML(problems);      
+  　</script>
+</body>
+</html>
